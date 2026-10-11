@@ -1,0 +1,24 @@
+# Only reads are exposed. This configuration cannot place broker orders.
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+
+[sandbox_workspace_write]
+network_access = false
+
+[features]
+apps = false
+
+[apps._default]
+enabled = false
+
+[mcp_servers.robinhood-readonly]
+url = "https://agent.robinhood.com/mcp/trading"
+enabled = true
+required = true
+enabled_tools = ["get_accounts", "get_portfolio", "get_trade_approval_setting", "get_equity_quotes", "get_equity_historicals", "get_equity_tradability", "get_earnings_results"]
+default_tools_approval_mode = "writes"
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.robinhood-readonly.tools.get_equity_historicals]
+output_token_limit = 40000

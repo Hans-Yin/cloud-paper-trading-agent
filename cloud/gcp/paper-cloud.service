@@ -1,0 +1,26 @@
+[Unit]
+Description=AI short-term paper research (no broker execution)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=papercloud
+Group=papercloud
+WorkingDirectory=/opt/ai-short-term-paper
+EnvironmentFile=/etc/ai-short-term-paper.env
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 /opt/ai-short-term-paper/cloud/server.py
+Restart=on-failure
+RestartSec=15
+KillMode=control-group
+TimeoutStopSec=15
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/lib/ai-short-term-paper /home/papercloud
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

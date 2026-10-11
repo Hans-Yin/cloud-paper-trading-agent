@@ -1,0 +1,13 @@
+**/__pycache__
+data
+status.html
+status.json
+work
+.git
+.openai
+**/.env*
+**/auth.json
+**/*token*
+**/*.zip
+test_engine.py
+cloud/test_cloud.py

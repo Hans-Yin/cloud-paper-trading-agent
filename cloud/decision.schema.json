@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_id", "actions", "summary"],
+  "properties": {
+    "plan_id": {"type": "string"},
+    "summary": {"type": "string"},
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["symbol", "action", "reason"],
+        "properties": {
+          "symbol": {"type": "string"},
+          "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
+          "reason": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ai-short-term-paper
+    runtime: docker
+    region: virginia
+    plan: 0.5c-512mb
+    numInstances: 1
+    healthCheckPath: /healthz
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: "off"
+    envVars:
+      - key: PAPER_CLOUD_STORAGE
+        value: /var/data
+      - key: CLOUD_RUN_ENABLED
+        value: "0"
+      - key: TZ
+        value: America/New_York
+    disk:
+      name: paper-ledger
+      mountPath: /var/data
+      sizeGB: 1
